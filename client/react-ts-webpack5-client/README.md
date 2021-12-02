@@ -1,6 +1,14 @@
 # React项目搭建教程
 
+```js
+// 问题:
+unable to locate '.../public/**/*' glob
 
+// 解决方案：
+// https://github.com/vuejs/vue-cli/issues/6281
+This problem only occurs when the public is an empty folder? Why not remove your public folder directly ?
+For SPA, this problem occurs If public folder only contains index.html or public folder is empty
+```
 
 
 

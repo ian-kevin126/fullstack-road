@@ -116,7 +116,7 @@ module.exports = {
       patterns: [
         {
           from: path.resolve(__dirname, '../public'),
-          to: path.resolve(__dirname, '../dist/public'),
+          to: path.resolve(__dirname, '../build/public'),
           globOptions: {
             ignore: [path.resolve(__dirname, '../public/index.html')],
           },

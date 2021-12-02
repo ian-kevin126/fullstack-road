@@ -1,11 +1,15 @@
 import React from 'react';
-import LoginPage from '@/pages/login';
+import { LoginPage, RegisterPage } from '@/pages';
 import { RouteObject } from 'react-router-dom';
 
 const routes: RouteObject[] = [
   {
-    path: '/',
+    path: '/login',
     element: <LoginPage />,
+  },
+  {
+    path: '/register',
+    element: <RegisterPage />,
   },
 ];
 
