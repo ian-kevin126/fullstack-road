@@ -1,11 +1,11 @@
 import React from 'react';
+import { useRoutes } from 'react-router-dom';
+import routes from './routes';
 
 const App: React.FC = () => {
-  return (
-    <div>
-      <h1>My React and TypeScript App!</h1>
-    </div>
-  );
+  const element = useRoutes(routes);
+
+  return <>{element}</>;
 };
 
 export default App;

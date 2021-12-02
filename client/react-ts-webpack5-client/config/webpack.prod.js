@@ -13,52 +13,53 @@ module.exports = merge(common, {
     // 打包前清空输出目录
     clean: true,
   },
+  target: 'browserslist',
   module: {
     rules: [
-      {
-        test: /\.css$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-            },
-          },
-        ],
-      },
-      {
-        test: /\.less$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              importLoaders: 1,
-            },
-          },
-          {
-            loader: 'less-loader',
-          },
-        ],
-      },
-      {
-        test: /\.s[ac]ss$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              importLoaders: 1,
-            },
-          },
-          {
-            loader: 'sass-loader',
-          },
-        ],
-      },
+      // {
+      //   test: /\.css$/i,
+      //   use: [
+      //     MiniCssExtractPlugin.loader,
+      //     {
+      //       loader: 'css-loader',
+      //       options: {
+      //         modules: true,
+      //       },
+      //     },
+      //   ],
+      // },
+      // {
+      //   test: /\.less$/i,
+      //   use: [
+      //     MiniCssExtractPlugin.loader,
+      //     {
+      //       loader: 'css-loader',
+      //       options: {
+      //         modules: true,
+      //         importLoaders: 1,
+      //       },
+      //     },
+      //     {
+      //       loader: 'less-loader',
+      //     },
+      //   ],
+      // },
+      // {
+      //   test: /\.s[ac]ss$/i,
+      //   use: [
+      //     MiniCssExtractPlugin.loader,
+      //     {
+      //       loader: 'css-loader',
+      //       options: {
+      //         modules: true,
+      //         importLoaders: 1,
+      //       },
+      //     },
+      //     {
+      //       loader: 'sass-loader',
+      //     },
+      //   ],
+      // },
       {
         test: /\.(ts|js)x?$/i,
         exclude: /node_modules/,

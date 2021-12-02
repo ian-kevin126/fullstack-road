@@ -3,10 +3,15 @@ const webpack = require('webpack');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+// 优化输出日志
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
+const HOST = 'localhost';
+const PORT = 3304;
 
+// https://github.com/wgm7512/react-router-dom-v6-example
 /**
  * 在我们引入antd之后，发现 Webpack 编译报错"Module build failed"
  *
@@ -21,80 +26,8 @@ const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
   mode: 'development',
-  output: {
-    filename: '[name].js',
-    path: path.resolve(__dirname, '../build'),
-  },
   module: {
     rules: [
-      {
-        test: /\.css$/i,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-            },
-          },
-        ],
-      },
-      {
-        test: /\.less$/i,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-            },
-          },
-          {
-            loader: 'less-loader',
-          },
-        ],
-        exclude: path.resolve(__dirname, '../src/index.less'),
-      },
-      {
-        test: /\.less$/i,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-          },
-          {
-            loader: 'less-loader',
-            options: {
-              lessOptions: {
-                javascriptEnabled: true,
-              },
-            },
-          },
-        ],
-        include: path.resolve(__dirname, '../src/index.less'),
-      },
-      {
-        test: /\.s[ac]ss$/i,
-        use: [
-          //从包含CSS的JS代码中 创建 `style` 节点
-          {
-            loader: 'style-loader',
-          },
-          // 将 CSS 转换为 CommonJS 格式的JS代码
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-            },
-          },
-          // 将 Sass 转换为 CSS
-          {
-            loader: 'sass-loader',
-          },
-        ],
-      },
       {
         test: /\.(t|j)sx?$/i,
         include: path.resolve(__dirname, '../src'),
@@ -133,6 +66,12 @@ module.exports = merge(common, {
     new ESLintPlugin({
       extensions: ['js', 'jsx', 'ts', 'tsx'],
     }),
+    new FriendlyErrorsWebpackPlugin({
+      compilationSuccessInfo: {
+        messages: [`You application is running here http://${HOST}:${PORT}`],
+      },
+      clearConsole: true,
+    }),
   ],
   devtool: 'inline-source-map',
   devServer: {
@@ -141,8 +80,14 @@ module.exports = merge(common, {
     static: {
       directory: path.join(__dirname, '../build'),
     },
+    host: HOST,
+    // 如果是自己通过 webpack 配置的项目，一定要在 devServe 中加 historyApiFallback: true ，解决 history 模式页面刷新后出现 404 的情况。
+    // 以及 `output` 中的 publicPath
     historyApiFallback: true,
-    port: 4000,
+    port: PORT,
     hot: true,
+    // historyApiFallback: {
+    //   disableDotRule: true,
+    // },
   },
 });
