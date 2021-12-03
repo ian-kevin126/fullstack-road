@@ -23,7 +23,7 @@
   },
   "include": [
     "src/**/*",
-    "typings/**/*",
+    "src/typings.d.ts",
     "config/**/*",
     ".eslintrc.js",
     ".stylelintrc.js",

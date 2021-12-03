@@ -19,6 +19,10 @@ module.exports = {
         // 只解析src目录
         include: path.resolve(__dirname, '../src'),
       },
+      {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+      },
     ],
   },
   resolve: {
