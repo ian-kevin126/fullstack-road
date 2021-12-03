@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "noImplicitAny": true,
+    "noUnusedParameters": false,
     "module": "esnext",
     "target": "esnext",
     "lib": ["esnext", "dom"],
@@ -24,9 +25,9 @@
   },
   "include": [
     "src/**/*",
-    "typings/**/*",
+    "typings.d.ts",
     "config/**/*",
-    ".eslintrc.js",
+    ".eslintrc.json",
     ".stylelintrc.js",
     ".prettierrc.js"
   ],

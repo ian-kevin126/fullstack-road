@@ -1,10 +1,18 @@
 import React, { lazy } from 'react';
+import LayoutPage from '@/layout';
 import { PartialRouteObject } from 'react-router';
 import RouteWrapper from '@/routes/RouteWrapper';
 
-const LoginPage = lazy(() => import(/* webpackChunkName: "login'" */ '@/pages/login'));
-const RegisterPage = lazy(() => import(/* webpackChunkName: "register'" */ '@/pages/register'));
-const ErrorPage = lazy(() => import(/* webpackChunkName: "error'" */ '@/pages/error'));
+const LoginPage = lazy(async () => import(/* webpackChunkName: "login" */ '@/pages/login'));
+const RegisterPage = lazy(
+  async () => import(/* webpackChunkName: "register" */ '@/pages/register'),
+);
+const ErrorPage = lazy(async () => import(/* webpackChunkName: "error" */ '@/pages/error'));
+
+const DashBoard = lazy(async () => import(/* webpackChunkName: "dashboard" */ '@/pages/dashboard'));
+const Documentation = lazy(
+  async () => import(/* webpackChunkName: "documentation" */ '@/pages/documentation'),
+);
 
 const mainRoutes: PartialRouteObject[] = [
   {
@@ -17,15 +25,15 @@ const mainRoutes: PartialRouteObject[] = [
   },
   {
     path: '/',
-    element: <RouteWrapper element={<LoginPage />} titleId="title.login" />,
+    element: <RouteWrapper element={<LayoutPage />} titleId="title.login" />,
     children: [
       {
         path: 'dashboard',
-        element: <RouteWrapper element={<LoginPage />} titleId="title.login" />,
+        element: <RouteWrapper element={<DashBoard />} titleId="title.dashboard" />,
       },
       {
         path: 'documentation',
-        element: <RouteWrapper element={<RegisterPage />} titleId="title.register" />,
+        element: <RouteWrapper element={<Documentation />} titleId="title.register" />,
       },
     ],
   },

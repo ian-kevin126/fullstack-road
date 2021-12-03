@@ -103,6 +103,17 @@ module.exports = {
         // 只解析src目录
         include: path.resolve(__dirname, '../src'),
       },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10240,
+            },
+          },
+        ],
+      },
     ],
   },
 

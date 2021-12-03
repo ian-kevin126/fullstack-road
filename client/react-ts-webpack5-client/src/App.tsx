@@ -1,12 +1,22 @@
-import React, {Suspense} from 'react';
+import React, { Suspense } from 'react';
 import routes from './routes';
-import {useRoutes} from "react-router-dom";
+import { useRoutes } from 'react-router-dom';
+import SuspendFallbackLoading from './layout/suspendFallbackLoading';
 
 const App: React.FC = () => {
-  const element = useRoutes(routes)
-  return <Suspense fallback={<div>suspense</div>}>
-    <>{element}</>
-  </Suspense>;
+  const element = useRoutes(routes);
+  return (
+    <Suspense
+      fallback={
+        <SuspendFallbackLoading
+          message="Alert message title"
+          description="Further details about the context of this alert."
+        />
+      }
+    >
+      <>{element}</>
+    </Suspense>
+  );
 };
 
 export default App;

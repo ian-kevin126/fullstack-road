@@ -1,9 +1,12 @@
 import React from 'react';
-import { UserLayout } from '@/layouts/userLayout';
+import { UserLayout } from '@/layout/userLayout/UserLayout';
 import { LoginParams } from '@/interface/user/login';
 import { Button, Checkbox, Form, Input } from 'antd';
 import styles from '@/pages/login/index.less';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '@/store';
+import { loginAsync } from '@/store/user.slice';
+import { formatSearch } from '@/utils/formatSearch';
 
 const layout = {
   labelCol: { span: 8 },
@@ -21,18 +24,29 @@ const initialValues: LoginParams = {
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const location = useLocation();
 
   const goToRegister = () => {
     navigate('/register');
   };
 
+  // 登录
+  const onFinished = async (form: LoginParams) => {
+    const res = await dispatch(loginAsync(form));
+    if (res) {
+      const search = formatSearch(location.search);
+      const from = search?.from || { pathname: '/dashboard' };
+      console.log('====================================');
+      console.log(from);
+      console.log('====================================');
+      navigate(from);
+    }
+  };
+
   return (
     <UserLayout>
-      <Form<LoginParams>
-        {...layout}
-        // onFinish={onFinished}
-        initialValues={initialValues}
-      >
+      <Form<LoginParams> {...layout} onFinish={onFinished} initialValues={initialValues}>
         <Form.Item
           label="用户名"
           name="username"

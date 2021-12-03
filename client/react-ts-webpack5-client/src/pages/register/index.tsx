@@ -1,15 +1,15 @@
 import React from 'react';
-import {UserLayout} from '@/layouts/userLayout';
-import styles from "@/pages/register/index.less";
-import {Button, Checkbox, Form, Input} from "antd";
-import {useNavigate} from "react-router-dom";
+import { UserLayout } from '@/layout/userLayout/UserLayout';
+import styles from '@/pages/register/index.less';
+import { Button, Checkbox, Form, Input } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const layout = {
-  labelCol: {span: 8},
-  wrapperCol: {span: 16},
+  labelCol: { span: 8 },
+  wrapperCol: { span: 16 },
 };
 const tailLayout = {
-  wrapperCol: {offset: 8, span: 16},
+  wrapperCol: { offset: 8, span: 16 },
 };
 
 const RegisterPage: React.FC = () => {
@@ -42,7 +42,7 @@ const RegisterPage: React.FC = () => {
       <Form
         {...layout}
         name="basic"
-        initialValues={{remember: true}}
+        initialValues={{ remember: true }}
         // onFinish={onFinish}
         // onFinishFailed={onFinishFailed}
         className={styles['register-form']}
@@ -50,13 +50,17 @@ const RegisterPage: React.FC = () => {
         <Form.Item
           label="用户名"
           name="username"
-          rules={[{required: true, message: '请输入用户名!'}]}
+          rules={[{ required: true, message: '请输入用户名!' }]}
         >
-          <Input/>
+          <Input />
         </Form.Item>
 
-        <Form.Item label="密码" name="password" rules={[{required: true, message: '请输入密码!'}]}>
-          <Input.Password/>
+        <Form.Item
+          label="密码"
+          name="password"
+          rules={[{ required: true, message: '请输入密码!' }]}
+        >
+          <Input.Password />
         </Form.Item>
 
         <Form.Item
@@ -64,8 +68,8 @@ const RegisterPage: React.FC = () => {
           name="confirm"
           hasFeedback
           rules={[
-            {required: true, message: '请再次输入密码!'},
-            ({getFieldValue}) => ({
+            { required: true, message: '请再次输入密码!' },
+            ({ getFieldValue }) => ({
               validator(_, value) {
                 if (!value || getFieldValue('password') === value) {
                   return Promise.resolve();
@@ -75,7 +79,7 @@ const RegisterPage: React.FC = () => {
             }),
           ]}
         >
-          <Input.Password/>
+          <Input.Password />
         </Form.Item>
 
         <Form.Item
