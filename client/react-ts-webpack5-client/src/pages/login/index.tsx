@@ -1,9 +1,9 @@
 import React from 'react';
 import { UserLayout } from '@/layouts/userLayout';
-import {LoginParams} from "@/interface/user";
-import {Button, Checkbox, Form, Input} from "antd";
-import styles from "@/pages/login/index.less";
-import {useNavigate} from "react-router-dom";
+import { LoginParams } from '@/interface/user/login';
+import { Button, Checkbox, Form, Input } from 'antd';
+import styles from '@/pages/login/index.less';
+import { useNavigate } from 'react-router-dom';
 
 const layout = {
   labelCol: { span: 8 },
@@ -18,7 +18,6 @@ const initialValues: LoginParams = {
   username: 'admin',
   password: 'admin',
 };
-
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
@@ -41,7 +40,11 @@ const LoginPage: React.FC = () => {
         >
           <Input placeholder="用户名" />
         </Form.Item>
-        <Form.Item label="密码" name="password" rules={[{ required: true, message: '请输入密码！' }]}>
+        <Form.Item
+          label="密码"
+          name="password"
+          rules={[{ required: true, message: '请输入密码！' }]}
+        >
           <Input type="password" placeholder="密码" />
         </Form.Item>
         <Form.Item
