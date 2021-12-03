@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
-import routes from './routes';
+import routes from '@/routes';
 import { useRoutes } from 'react-router-dom';
-import SuspendFallbackLoading from './layout/suspendFallbackLoading';
+import SuspendFallbackLoading from '@/components/suspenseFallback';
 
 const App: React.FC = () => {
   const element = useRoutes(routes);

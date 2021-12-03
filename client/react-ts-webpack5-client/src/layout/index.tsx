@@ -12,7 +12,7 @@ import { getGlobalState } from '@/utils/getGlobalState';
 import { Outlet, useLocation, useNavigate } from 'react-router';
 import { setUserItem } from '@/store/user.slice';
 import { useAppDispatch, useAppState } from '@/store';
-import SuspendFallbackLoading from './suspendFallbackLoading';
+import SuspendFallbackLoading from '@/components/suspenseFallback';
 
 const { Header, Sider, Content } = Layout;
 const WIDTH = 992;
@@ -20,7 +20,6 @@ const WIDTH = 992;
 const LayoutPage: FC = () => {
   const { collapsed } = useAppState((state) => state.user);
   const dispatch = useAppDispatch();
-  // const { driverStart } = useGuide();
   const location = useLocation();
   const navigate = useNavigate();
 

@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import { Spin, Alert } from 'antd';
 
-interface FallbackMessageProps {
+interface FallbackProps {
   message: string;
   description?: string;
 }
 
-const SuspendFallbackLoading: FC<FallbackMessageProps> = ({ message, description }) => {
+const SuspendFallback: FC<FallbackProps> = ({ message, description }) => {
   return (
     <div
       style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
@@ -18,4 +18,4 @@ const SuspendFallbackLoading: FC<FallbackMessageProps> = ({ message, description
   );
 };
 
-export default SuspendFallbackLoading;
+export default SuspendFallback;
